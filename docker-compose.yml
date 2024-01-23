@@ -1,0 +1,45 @@
+version: "3.2"
+
+services:
+  appointmentManagement:
+    container_name: appointmentcontainer
+    build:
+      context: .
+      args:
+        CONTAINER_PORT: ${CONTAINER_PORT}
+    image: appointment:v1
+    env_file:
+      - ./.env.dev
+    ports:
+      - "80:8000"
+    depends_on:
+      - database
+      - redis
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_container:5432/appointment
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  database:
+    image: postgres:15
+    container_name: postgres_container
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=appointment
+    volumes:
+      - C:/Users/Nimap/Desktop/appointment:/var/lib/postgresql/data  
+    restart: always
+
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    ports:
+      - 6379:6379
+    restart: always
+
+volumes:
+  appointment:

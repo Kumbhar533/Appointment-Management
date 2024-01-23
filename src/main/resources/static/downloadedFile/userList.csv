@@ -1,0 +1,6 @@
+appointment_id,appointment_date,manager,response
+4,2023-12-31 12:10:00.0,Natashu,PENDING,
+5,2024-01-23 12:10:00.0,Natashu,PENDING,
+10,2023-12-25 09:11:00.0,Natashu,PENDING,
+11,2023-11-25 09:11:00.0,Natashu,PENDING,
+12,2023-10-25 09:11:00.0,Natashu,DECLINED,
